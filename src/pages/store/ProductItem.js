@@ -52,6 +52,10 @@ const ProductItem = ({ product }) => {
         addToCart( product );
     }
 
+    function isCart() {
+        return cart.some( (p) => p.id === product.id )
+    }
+
     return(
         <div className={classes.card}>
             <Link to={`/products/${product.name}`}>
@@ -59,9 +63,13 @@ const ProductItem = ({ product }) => {
                 <h3>{product.name}</h3>
                 <p className={classes.price}>{product.price}$</p>
             </Link>
-            
             <p>
-                <button className={classes.cartButton} onClick={ handleAddToCart }>Add to Cart</button>    
+                { isCart() ? (
+                    <button className={classes.cartButton} onClick={ handleAddToCart }>Add More</button>
+                    ): (
+                        <button className={classes.cartButton} onClick={ handleAddToCart }>Add to Cart</button>
+                    )
+                }  
             </p>
         </div>
     )
