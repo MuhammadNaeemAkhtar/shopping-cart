@@ -2,7 +2,6 @@ import React, { createContext, useReducer } from 'react';
 import { CartReducer } from './CartReducer';
 
 const initialState = {
-    products: [],
     cart: [],
 }
 
@@ -18,47 +17,13 @@ const CartContextProvider = ({children}) => {
             payload: {
                 ...product,
                 items: 1,
-            }
-        })
-    }
-
-    const decrease = payload => {
-        dispatch({
-            type: "DECREASE",
-            payload
-        })
-    }
-
-    const addProduct = payload => {
-        dispatch({
-            type: "ADD_ITEM",
-            payload
-        })
-    }
-
-    const removeProduct = payload => {
-        dispatch({
-            type: "REMOVE_ITEM",
-            payload
-        })
-    }
-
-    const clearCart = () => {
-        dispatch({
-            type: "CLEAR"
-        })
-    }
-
-    const handleCheckout = () => {
-        dispatch({
-            type: "CHECKOUT"
-        })
+            },
+        });
     }
 
     return(
         <CartContext.Provider 
             value={{
-                products: state.products,
                 cart: state.cart,
                 addToCart,
             }}

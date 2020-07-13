@@ -44,8 +44,13 @@ const useStyles = makeStyles( () => ({
 }));
 
 const ProductItem = ({ product }) => {
-    //console.log(product.imageURL);
-    const classes = useStyles();   
+    const classes = useStyles();  
+    const { cart, addToCart } = useContext(CartContext); 
+    
+    function handleAddToCart(e) {
+        e.stopPropagation();
+        addToCart( product );
+    }
 
     return(
         <div className={classes.card}>
@@ -56,7 +61,7 @@ const ProductItem = ({ product }) => {
             </Link>
             
             <p>
-                <button className={classes.cartButton} >Add to Cart</button>    
+                <button className={classes.cartButton} onClick={ handleAddToCart }>Add to Cart</button>    
             </p>
         </div>
     )
